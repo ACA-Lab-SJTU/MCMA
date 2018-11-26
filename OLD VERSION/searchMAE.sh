@@ -1,0 +1,33 @@
+cd src
+nohup python MCMA.py bessel_Jnu A_2_4_4_1 C_2_4_4_4 3 5 0.025 2000 2000 128 &
+nohup python MCMA.py bessel_Jnu A_2_4_4_1 C_2_4_4_4 3 5 0.05 2000 2000 128 &
+nohup python MCMA.py bessel_Jnu A_2_4_4_1 C_2_4_4_4 3 5 0.075 2000 2000 128 &
+nohup python MCMA.py bessel_Jnu A_2_4_4_1 C_2_4_4_4 3 5 0.1 2000 2000 128 &
+nohup python MCMA.py bessel_Jnu A_2_4_4_1 C_2_4_4_4 3 1 0.025 2000 2000 128 &
+nohup python MCMA.py bessel_Jnu A_2_4_4_1 C_2_4_4_4 3 1 0.05 2000 2000 128 &
+nohup python MCMA.py bessel_Jnu A_2_4_4_1 C_2_4_4_4 3 1 0.075 2000 2000 128 &
+nohup python MCMA.py bessel_Jnu A_2_4_4_1 C_2_4_4_4 3 1 0.1 2000 2000 128 &
+nohup python MCMA.py bessel_Jnu A_2_4_4_1 C_2_4_4_2 1 5 0.025 2000 2000 128 &
+nohup python MCMA.py bessel_Jnu A_2_4_4_1 C_2_4_4_2 1 5 0.05 2000 2000 128 &
+nohup python MCMA.py bessel_Jnu A_2_4_4_1 C_2_4_4_2 1 5 0.075 2000 2000 128 &
+nohup python MCMA.py bessel_Jnu A_2_4_4_1 C_2_4_4_2 1 5 0.1 2000 2000 128 &
+nohup python MCMA.py bessel_Jnu A_2_4_4_1 C_2_4_4_2 1 1 0.025 2000 2000 128&
+nohup python MCMA.py bessel_Jnu A_2_4_4_1 C_2_4_4_2 1 1 0.05 2000 2000 128 &
+nohup python MCMA.py bessel_Jnu A_2_4_4_1 C_2_4_4_2 1 1 0.075 2000 2000 128 &
+nohup python MCMA.py bessel_Jnu A_2_4_4_1 C_2_4_4_2 1 1 0.1 2000 2000 128 &
+nohup python MCMA.py fft A_1_2_2_2 C_1_2_4 3 5 0.025 10000 10000 128 &
+nohup python MCMA.py fft A_1_2_2_2 C_1_2_4 3 5 0.05 10000 10000 128 &
+nohup python MCMA.py fft A_1_2_2_2 C_1_2_4 3 5 0.075 10000 10000 128 &
+nohup python MCMA.py fft A_1_2_2_2 C_1_2_4 3 5 0.1 10000 10000 128 &
+nohup python MCMA.py fft A_1_2_2_2 C_1_2_4 3 1 0.025 10000 10000 128 &
+nohup python MCMA.py fft A_1_2_2_2 C_1_2_4 3 1 0.05 10000 10000 128 &
+nohup python MCMA.py fft A_1_2_2_2 C_1_2_4 3 1 0.075 10000 10000 128 &
+nohup python MCMA.py fft A_1_2_2_2 C_1_2_4 3 1 0.1 10000 10000 128 &
+nohup python MCMA.py fft A_1_2_2_2 C_1_2_2 1 5 0.025 10000 10000 128 &
+nohup python MCMA.py fft A_1_2_2_2 C_1_2_2 1 5 0.05 10000 10000 128 &
+nohup python MCMA.py fft A_1_2_2_2 C_1_2_2 1 5 0.075 10000 10000 128 &
+nohup python MCMA.py fft A_1_2_2_2 C_1_2_2 1 5 0.1 10000 10000 128 &
+nohup python MCMA.py fft A_1_2_2_2 C_1_2_2 1 1 0.025 10000 10000 128 &
+nohup python MCMA.py fft A_1_2_2_2 C_1_2_2 1 1 0.05 10000 10000 128 &
+nohup python MCMA.py fft A_1_2_2_2 C_1_2_2 1 1 0.075 10000 10000 128 &
+nohup python MCMA.py fft A_1_2_2_2 C_1_2_2 1 1 0.1 10000 10000 128 &

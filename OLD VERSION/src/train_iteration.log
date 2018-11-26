@@ -1,0 +1,32 @@
+Using TensorFlow backend.
+2018-04-02 16:01:45.369290: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+2018-04-02 16:01:45.624895: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1030] Found device 0 with properties: 
+name: GeForce GTX 1080 Ti major: 6 minor: 1 memoryClockRate(GHz): 1.683
+pciBusID: 0000:04:00.0
+totalMemory: 10.91GiB freeMemory: 10.52GiB
+2018-04-02 16:01:45.624945: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 1080 Ti, pci bus id: 0000:04:00.0, compute capability: 6.1)
+train_iteration.py:26: UserWarning: Update your `Dense` call to the Keras 2 API: `Dense(8, kernel_initializer="uniform", input_dim=6)`
+  model.add(Dense(net_list[1], input_dim=net_list[0], init='uniform'))
+train_iteration.py:30: UserWarning: Update your `Dense` call to the Keras 2 API: `Dense(8, kernel_initializer="uniform")`
+  model.add(Dense(i, init='uniform'))
+train_iteration.py:30: UserWarning: Update your `Dense` call to the Keras 2 API: `Dense(1, kernel_initializer="uniform")`
+  model.add(Dense(i, init='uniform'))
+train_iteration.py:45: UserWarning: Update your `Dense` call to the Keras 2 API: `Dense(8, kernel_initializer="uniform", input_dim=6)`
+  model.add(Dense(net_list[1], input_dim=net_list[0], init='uniform'))
+train_iteration.py:52: UserWarning: Update your `Dense` call to the Keras 2 API: `Dense(2, kernel_initializer="uniform")`
+  model.add(Dense(net_list[-1], init='uniform'))
+blackscholes_it10_eb0.05_ct2_epA1000_epC1000_bsA128_bsC128_netA6_8_8_1_netC6_8_2
+start training
+/home/devil/miniconda3/envs/py2/lib/python2.7/site-packages/keras/models.py:942: UserWarning: The `nb_epoch` argument in `fit` has been renamed `epochs`.
+  warnings.warn('The `nb_epoch` argument in `fit` '
+17618
+Traceback (most recent call last):
+  File "train_iteration.py", line 218, in <module>
+    main(app_name, iteration, error_bound, choose_type, epochA, epochC, batch_sizeA, batch_sizeC, net_A, net_C)
+  File "train_iteration.py", line 206, in main
+    train_iteration(A, C, X0, Y0, X1, Y1, iteration, error_bound, choose_type, epochA, epochC, batch_sizeA, batch_sizeC, net_A, net_C, get_name)
+  File "train_iteration.py", line 164, in train_iteration
+    C.fit(X_origin, Y_cls, nb_epoch=epochC, batch_size=batch_sizeC, show_accuracy=True, verbose=0)
+  File "/home/devil/miniconda3/envs/py2/lib/python2.7/site-packages/keras/models.py", line 946, in fit
+    raise TypeError('Unrecognized keyword arguments: ' + str(kwargs))
+TypeError: Unrecognized keyword arguments: {'show_accuracy': True}
