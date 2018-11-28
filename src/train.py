@@ -46,6 +46,22 @@ def modelLoading():
     netA,netC = getNetStructure(benchName,numA)
     A = [ANet(netA) for i in range(numA)]
     C = CNet(netC)
+
+def trainModel(model, src, tgt):
+    predict = model(src)
+
+def train():
+    print ("training begin")
+    epochA = c['train']['epochA']
+    epochC = c['train']['epochC']
+    batchSizeA = c['train']['batchSizeA']
+    iterNum = c['train']['iteration']
+    dataType = c['train']['dataUpdataType'] #See this in the paper
+    eb = c['train']['errorBound']
+
+    for iterN in range(iterNum):
+        minix = miniBatch(trainSrc,batchSizeA,1) 
+
     
 if (__name__=="__main__"):
     print ("Process begins")
@@ -55,5 +71,6 @@ if (__name__=="__main__"):
     dataReading()
     modelLoading()
     logging.info("initiation done")
+    train()
     
     
