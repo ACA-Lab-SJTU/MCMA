@@ -46,6 +46,11 @@ mytensor = lambda arr, varType: torch.tensor(arr, device=device, dtype=varType)
 
 benchName = 'bessel_Jnu'
 c = {}
-
+trainSrc = []
+trainTgt = []
+testSrc = []
+testTgt = []
+netA = []
+netC = []
 
 

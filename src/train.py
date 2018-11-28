@@ -1,5 +1,7 @@
 from globalSetting import *
 from utils import *
+from data import *
+from model import *
 
 def parserSetting():
     parser = argparse.ArgumentParser(description="--bench benchName")
@@ -33,10 +35,17 @@ def logSetting():
     logging.debug("test log function")
 
 def dataReading():
+    global trainSrc,trainTgt,testSrc,testTgt,benchName
     print ("data reading")
+    trainSrc,trainTgt,testSrc,testTgt = loadData(benchName)
 
 def modelLoading():
     print ("model loading")
+    global A,C,netA,netC
+    numA = c['model']['numA']
+    netA,netC = getNetStructure(benchName,numA)
+    A = [ANet(netA) for i in range(numA)]
+    C = CNet(netC)
     
 if (__name__=="__main__"):
     print ("Process begins")
