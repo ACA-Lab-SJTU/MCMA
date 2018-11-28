@@ -27,13 +27,11 @@ class CNet(nn.Module):
 if (__name__=="__main__"):
     print ("Model test")
     benchName = 'bessel_Jnu'
+
     x,y,_,_ = loadData(benchName)
-    print (x[:10])
-    print (y[:10])
-    os._exit(0)
+
     netA,netC = getNetStructure(benchName,3)
     A = ANet(netA)
-    testInput = [1,2]
-    testInput = torch.tensor([[1,2]],dtype=torch.float)
-    output = A(testInput)
+    minix = miniBatch(x,8,1)
+    output = A(minix)
     print (output)

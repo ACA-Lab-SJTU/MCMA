@@ -49,7 +49,20 @@ def loadData(benchName):
     testTgt = np.loadtxt(dataDir+benchName+'/test.x')
     return tensorData(trainSrc), tensorData(trainTgt),\
            tensorData(testSrc), tensorData(testTgt)
-            
+           
+startx = 0
+starty = 0
+# src==1: src, src==0 tgtMinibatch
+def miniBatch(tens, batchSize, src):
+    global startx, starty
+    start = (startx if (src==1) else starty)
+    start+=batchSize
+    if (start>=len(tens)-(batchSize/2)): 
+            start+= batchSize-len(tens)
+    if (src==1): startx = start
+    else: starty = start
+    return tens[start:batchSize+start]
+
 if (__name__=="__main__"):
     print ("utils test")
     t,_,_,_ = loadData("bessel_Jnu")
