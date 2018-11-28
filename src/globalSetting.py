@@ -42,5 +42,10 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 # easy tensor
 mytensor = lambda arr, varType: torch.tensor(arr, device=device, dtype=varType)
 
+# For training, other variables
+
+benchName = 'bessel_Jnu'
+c = {}
+
 
 

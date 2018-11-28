@@ -34,9 +34,7 @@ class CNet(nn.Module):
 if (__name__=="__main__"):
     print ("Model test")
     benchName = 'bessel_Jnu'
-
     x,y,_,_ = loadData(benchName)
-
     netA,netC = getNetStructure(benchName,3)
     A = ANet(netA)
     C = CNet(netC)

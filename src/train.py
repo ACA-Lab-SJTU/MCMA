@@ -1,6 +1,19 @@
 from globalSetting import *
 from utils import *
 
+def parserSetting():
+    parser = argparse.ArgumentParser(description="--bench benchName")
+    parser.add_argument(
+            "--bench",
+            type = str,
+            nargs = 1,
+            default = 'bessel_Jnu',
+            help = 'Check ../data/* for all the benchmarks.'
+            )
+    args = parser.parse_args()
+    benchName = args.bench[0]
+    return args
+
 def configSetting():
     global c
     print("config loadding")        
@@ -27,6 +40,7 @@ def modelLoading():
     
 if (__name__=="__main__"):
     print ("Process begins")
+    parserSetting()
     configSetting()
     logSetting()
     dataReading()
