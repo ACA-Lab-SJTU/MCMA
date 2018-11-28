@@ -2,6 +2,7 @@
 global Variables
 """
 import sys
+import multiprocessing as mp
 import os
 import time
 import math
@@ -29,6 +30,7 @@ month, day = localtime.split()[1:3]
 configPath = "../configs/sample.json"
 
 workDir = "../runs/"+month+day+'/'
+dataDir = "../data/"
 logPath = workDir + "log.txt"
 
 if (os.path.exists(workDir)==False):
@@ -38,7 +40,7 @@ if (os.path.exists(workDir)==False):
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 # easy tensor
-mytensor = lambda arr, varType: torch.tensor(arr, device=device, dtype=dT)
+mytensor = lambda arr, varType: torch.tensor(arr, device=device, dtype=varType)
 
 
 

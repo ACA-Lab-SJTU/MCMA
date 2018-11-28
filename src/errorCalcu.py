@@ -15,6 +15,7 @@ def mae(predict, target):
 
 def rmse(predict, target):
     return np.sqrt(((np.array(target)-np.array(predict))**2).mean())
+
 if (__name__=="__main__"):
     print ("Error test")
     print (mre([1,1],[0.1,1]))
