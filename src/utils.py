@@ -1,8 +1,22 @@
 from globalSetting import *
 import errorCalcu
 
+def npData(data):
+    return (data.reshape((data.shape[0],1)) if (len(data.shape)==1) else data)
+def tensorData(dataLst):
+    npLst = npData(dataLst)
+    return torch.tensor(npLst,dtype=torch.float)
+
 def timeSince(startTime):
     return (time.time()-startTime)
+def toCate(lst, classes):
+    return np.eye(numA,dtype='uint8')
+def cateFromOutput(output):
+    topN,topI = output.topk(1)
+    categoryI = topI[0].item()
+    return categoryI
+def softmax2num(softTens):
+    return np.array([cateFromOutput(softTens[i]) for i in range(softTens.size[0])])
 
 def errorFunc(errorType):
     if (errorType == "meanRelativeError"): return error.mre

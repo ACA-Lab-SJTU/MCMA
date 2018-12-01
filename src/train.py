@@ -1,7 +1,11 @@
 from globalSetting import *
+from initiation import *
 from utils import *
 from data import *
 from model import *
+from errorCalcu import *
+
+errMeasure = rmse
 
 def parserSetting():
     parser = argparse.ArgumentParser(description="--bench benchName")
@@ -16,52 +20,77 @@ def parserSetting():
     benchName = args.bench[0]
     return args
 
-def configSetting():
-    global c
-    print("config loadding")        
-    c = json.load(open(configPath,'r'))
-    configSavedPath = os.path.join(workDir, 'config.json')
-    configSavedFile = open(configSavedPath, 'w')
-    json.dump(c, configSavedFile, sort_keys=False, indent=4)
-
-def logSetting():
-    logging.basicConfig(
-        filename=logPath,
-        filemode="a+",
-        format="%(asctime)s %(levelname)s: %(message)s",
-        datefmt="%y/%m/%d_%H:%M:%S",
-        level=logging.DEBUG
-    )
-    logging.debug("test log function")
-
-def dataReading():
-    global trainSrc,trainTgt,testSrc,testTgt,benchName
-    print ("data reading")
-    trainSrc,trainTgt,testSrc,testTgt = loadData(benchName)
-
-def modelLoading():
-    print ("model loading")
-    global A,C,netA,netC
-    numA = c['model']['numA']
-    netA,netC = getNetStructure(benchName,numA)
-    A = [ANet(netA) for i in range(numA)]
-    C = CNet(netC)
-
-def trainModel(model, src, tgt):
+def optiModel(model, src, tgt):
     predict = model(src)
+    model.optimizer.zero_grad()
+    loss = model.criterion(predict, tgt)
+    loss.backward()
+    model.optimizer.step()
+
+def modelDeduct(model,src):
+    with model.no_grad():
+        return model(src)
+
+def getLabel(pred,tgt,eb):
+    label = []
+    for i in range(len(tgt)):
+        label.append[0]
+        for j in range(numA):
+            if (errMeasure(pred[j][i],tgt[i])<eb):
+                label[i]=j
+                break
+    label = tensorData(toCate(label,numA))
+    return label
+
+def predByAs(A,src):
+    pred = []
+    for i in range(len(A)):
+        pred.append(modelDeduct(A[i].src))
+    return pred
+
+def trainAs(A,src,tgt):
+    for i in range(len(A)):
+        if (src[i].shape[0]>0):
+            optiModel(A[i],src[i],tgt[i])
+
+def loadTrainParas():
+    global epochA, epochC, batchsize, iterNum, dataType, eb
+    epochA = c['train']['epochA']
+    epochC = c['train']['epochC']
+    batchsize = c['train']['batchsize']
+    iterNum = c['train']['iteration']
+    dataType = c['train']['dataUpdateType'] #See this in the paper
+    eb = c['train']['errorBound']
+
+def prepareNextIter(labelA,labelC,src,tgt):
+    """ labelA labelC are np arraies, src tgt are tensors """
+    nextSrc = [[] for i in range(numA)]
+    nextTgt = [[] for i in range(numA)]
+    for i in range(len(src)):
+        nextSrc[labelC[i]].append(src[i])
+        nextTgt[labelC[i]].append(tgt[i])
+    nextSrc = [tensorData(nextSrc[i]) for i in range(numA)]
+    nextTgt = [tensorData(nextTgt[i]) for i in range(numA)]
+    return nextSrc,nextTgt
+
+def evaluate(A,C,testSrc,testTgt):
+
+    
 
 def train():
     print ("training begin")
-    epochA = c['train']['epochA']
-    epochC = c['train']['epochC']
-    batchSizeA = c['train']['batchSizeA']
-    iterNum = c['train']['iteration']
-    dataType = c['train']['dataUpdataType'] #See this in the paper
-    eb = c['train']['errorBound']
-
+    # Parameters
+    loadTrainParas()
+    srcEphem = [trainSrc.clone() for i in range(numA)]
+    tgtEphem = trainTgt.clone()
     for iterN in range(iterNum):
-        minix = miniBatch(trainSrc,batchSizeA,1) 
-
+        trainAs(A,srcEphem,tgtEphem)
+        predictA = predByAs(A,trainSrc)
+        labelA = getLabel(predictA,trainTgt,eb)
+        optiModel(C,trainSrc,labelA)
+        predictC = softmax2num(modelDeduct(C,trainSrc))
+        srcEphem,tgtEphem = prepareNextIter(np.array(labelA),predictC,trainSrc,trainTgt)
+        evaluate(A,C,testSrc,testTgt)
     
 if (__name__=="__main__"):
     print ("Process begins")

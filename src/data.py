@@ -1,11 +1,5 @@
 from globalSetting import *
-
-def npData(data):
-    return (data.reshape((data.shape[0],1)) if (len(data.shape)==1) else data)
-
-def tensorData(dataLst):
-    npLst = npData(dataLst)
-    return torch.tensor(npLst,dtype=torch.float)
+from utils import *
 
 def loadData(benchName):
     trainSrc = np.loadtxt(dataDir+benchName+'/train.x')

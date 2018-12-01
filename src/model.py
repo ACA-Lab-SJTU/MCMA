@@ -12,6 +12,7 @@ class ANet(nn.Module):
             self.layer.append(nn.Linear(netLst[i],netLst[i+1]))
             self.activate.append(activate)
         self.optimizer = torch.optim.Adam(self.parameters())
+        self.criterion = torch.nn.MSELoss(reduction = 'sum')
 
     # Input.size = [batchSize, layer[0].inputSize]
     def forward(self, dataflow):
@@ -29,6 +30,7 @@ class CNet(nn.Module):
             self.layer.append(nn.Linear(netLst[i],netLst[i+1]))
             self.activate.append(activate if (i!=len(netLst)-2) else nn.LogSoftmax(dim=1))
         self.optimizer = torch.optim.Adam(self.parameters())
+        self.criterion = torch.nn.NLLLoss()
 
     def forward(self, dataflow):
         for i in range(len(self.layer)):
