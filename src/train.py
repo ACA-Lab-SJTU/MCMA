@@ -70,7 +70,6 @@ if (__name__=="__main__"):
     logSetting()
     dataReading()
     modelLoading()
-    logging.info("initiation done")
     train()
     
     

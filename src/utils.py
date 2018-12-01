@@ -1,6 +1,9 @@
 from globalSetting import *
 import errorCalcu
 
+def timeSince(startTime):
+    return (time.time()-startTime)
+
 def errorFunc(errorType):
     if (errorType == "meanRelativeError"): return error.mre
     if (errorType == "meanAbsoluteError"): return error.mae

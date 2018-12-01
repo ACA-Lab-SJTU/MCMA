@@ -28,7 +28,6 @@ month, day = localtime.split()[1:3]
 
 # default paths
 configPath = "../configs/sample.json"
-
 workDir = "../runs/"+month+day+'/'
 dataDir = "../data/"
 logPath = workDir + "log.txt"

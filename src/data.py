@@ -28,3 +28,7 @@ def miniBatch(tens, batchSize, src):
     else: starty = start
     return tens[start:batchSize+start]
 
+if (__name__=="__main__"):
+    print ("test data.py")
+    a,b,c,d = loadData(benchName)
+
