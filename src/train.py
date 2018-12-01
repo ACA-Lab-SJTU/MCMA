@@ -37,7 +37,7 @@ def getLabel(pred,tgt,eb):
         label.append[0]
         for j in range(numA):
             if (errMeasure(pred[j][i],tgt[i])<eb):
-                label[i]=j
+                label[i]=j+1
                 break
     label = tensorData(toCate(label,numA))
     return label
@@ -74,7 +74,12 @@ def prepareNextIter(labelA,labelC,src,tgt):
     return nextSrc,nextTgt
 
 def evaluate(A,C,testSrc,testTgt):
-
+    """ predictC is the prediction, whereas predictA is the groundtruth, undersand this """
+    N = len(testSrc)*1.0
+    predictC = softmax2num(modelDeduct(C,testSrc))
+    predictAs = predByAs(A,testSrc)
+    predictA = getLabel(predictAs,testTgt,eb)
+    accuracy = sum([(predictC[i]>0 and errMeasure(predictAs[predictC[i]],testTgt[i])<eb) for i in range(N)])/double(N)
     
 
 def train():
